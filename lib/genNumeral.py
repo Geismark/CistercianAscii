@@ -11,23 +11,16 @@ def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral 
 
 	# top half
 	for r in range(4):
-		hold = []
-		for s in tens[r]:
-			hold.append(s)
-		hold.append(stem[r])
-		for s in ones[r]:
-			hold.append(s)
+		tens_list = [symbol for symbol in tens[r]]
+		ones_list = [symbol for symbol in ones[r]]
+		hold = tens_list + [stem[r]] + ones_list
 		glyph_top.append("".join(hold))
-	
 
 	# bottom half (reversed to have rows go bottom-up)
 	for r in reversed(range(4)):
-		hold = []
-		for s in thousands[r]:
-			hold.append(s)
-		hold.append(stem[-(r+1)])
-		for s in hundreds[r]:
-			hold.append(s)
+		thousands_list = [symbol for symbol in thousands[r]]
+		hundreds_list = [symbol for symbol in hundreds[r]]
+		hold = thousands_list + [stem[-(r+1)]] + hundreds_list
 		glyph_bottom.append("".join(hold))
 
 	return glyph_top + [middle_row] + glyph_bottom
