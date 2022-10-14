@@ -1,46 +1,38 @@
-from numerals import h, d, numbers, stem, middle_row
+from lib.numerals import h, d, numbers, stem, middle_row
+import logging
 
+# TODO rename 'glyph' to numeral
 
-
-def getAscii(num): # TODO add user input
-	values = getValues(num)
+def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral in list[list[row]] format
+	values = get_digits(num)
 	glyph_top = []
 	glyph_bottom = []
 	ones, tens, hundreds, thousands = getSections(values)
 
 	# top half
 	for r in range(4):
-		hold = []
-		for s in tens[r]:
-			hold.append(s)
-		hold.append(stem[r])
-		for s in ones[r]:
-			hold.append(s)
+		tens_list = [symbol for symbol in tens[r]]
+		ones_list = [symbol for symbol in ones[r]]
+		hold = tens_list + [stem[r]] + ones_list
 		glyph_top.append("".join(hold))
 
-	# bottom half (reversed to go top-down)
+	# bottom half (reversed to have rows go bottom-up)
 	for r in reversed(range(4)):
-		hold = []
-		for s in thousands[r]:
-			hold.append(s)
-		hold.append(stem[-(r+1)])
-		for s in hundreds[r]:
-			hold.append(s)
+		thousands_list = [symbol for symbol in thousands[r]]
+		hundreds_list = [symbol for symbol in hundreds[r]]
+		hold = thousands_list + [stem[-(r+1)]] + hundreds_list
 		glyph_bottom.append("".join(hold))
 
 	return glyph_top + [middle_row] + glyph_bottom
 
 
-
-def getValues(num):
-	if len(str(num)) > 4: raise ValueError("Values input too large")
-	values = [int(x) for x in list(str(num))[::-1]]
-	values.extend([0 for _ in range(0, 4 - min(4, len(str(num))))])
-	return list(reversed(values))
+def get_digits(num: str) -> list[int]: # takes string int and returns int digits in list
+	digits = [int(x) for x in list(str(num))[::-1]]
+	digits.extend([0 for _ in range(0, 4 - min(4, len(str(num))))]) # inserts placeholder 0s for numeral gen
+	return list(reversed(digits))
 
 
-
-def getSections(values):
+def getSections(values): # takes int for each section of numeral and gets appropriate strings
 	ones = numbers[values[3]]
 
 	tens = []
@@ -60,7 +52,7 @@ def getSections(values):
 
 
 
-def replaceChars(section, replace_dict):
+def replaceChars(section, replace_dict): # takes strings for each section and ensures they are flipped appropriately per section
 	out = []
 	for r in section:
 		row = "".join(r)
@@ -77,5 +69,6 @@ def replaceChars(section, replace_dict):
 				row = row2
 			else:
 				row = row.replace(char, replace_dict.get(char))
+				logging.debug(f"Replaced undefined characters:\n{replace_dict=}")
 		out.append(list(row))
 	return out

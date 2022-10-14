@@ -1,33 +1,29 @@
-from genAscii import makeCistercian, genRandomNumber
+from lib.content_main import input_dict, input_other
 
 
-def main():
-	test_val = 1111222233334444555566667777888899990000
-	p = True
+def main() -> None:
+	repeat = True
+	delay_print = False
 
-	inp = input("Input a number: ")
-
-	if inp in ["e", "exit", "c", "cancel"]:
-		return None
-
-	if inp in ["h", "help"]:
-		print("Input 'h' for help, 't' for test, 'p' to disable arabic print, 'e' to exit")
+	while repeat:
 		inp = input("Input a number: ")
-
-	if inp in ["p", "print"]:
-		p = False
-		inp = input("Arabic print disabled, input a number: ")
-	elif list(inp)[0] == "p":
-		p = False
-		inp = inp[1:]
-
-	if inp in ["t", "test"]:
-		return makeCistercian(test_val, p)
-	elif inp in ["r", "rand", "random"]:
-		return makeCistercian(genRandomNumber(), p)
-	else:
-		return makeCistercian(int(inp), p)
+		other = True
+		for input_list in input_dict:
+			if inp in input_list:
+				repeat, delay_print = input_dict[input_list](delay_print)
+				other = False
+				break
+		if other:
+			repeat, delay_print = input_other(delay_print, inp)
+			# TODO print help rather than raise errors on erroneous input
+	print("\n-------- EXIT --------\n")
+		
 
 
 if __name__ == "__main__":
 	main()
+
+
+# TODO unit tests
+# TODO fix names, ascii/cistercian/glyph, etc.
+# FUTUREDO on exit: print arabic if print delay before exit

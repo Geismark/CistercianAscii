@@ -22,7 +22,7 @@ numbers = [
 ]
 
 
-stem = [b, v, v, v, v, v, v, v, b] # used to place/track centre line within rows
+stem = [b, v, v, v, v, v, v, v, b] # used to place/track centre line within rows (top to bottom)
 
 
 middle_row = "".join([b, b, b, b, stem[4], b, b, b, b])
