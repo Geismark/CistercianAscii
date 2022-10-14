@@ -19,7 +19,6 @@ def read_numeral_test_json(n):
 	with open(f_name, "r", encoding='utf-8') as f:
 		content = json.load(f)
 
-		val_hold = ""
 		for i in range(0, n+1):
 			cist_numeral = CistercianNumeral(str(i)).cistercian
 			if not content[i] == cist_numeral:
