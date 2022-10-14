@@ -4,4 +4,4 @@ pitest.py
 tests/.pytest_cache
 
 testCistercian.py
-numeralTests.py
+numeralTests.json

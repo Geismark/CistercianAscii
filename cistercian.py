@@ -61,4 +61,9 @@ class CistercianNumeral:
 
 if __name__ == "__main__":
 	Cistercian.get_random_numerals(print=True)
-		
+
+
+
+# TODO read cistercian numeral strings and output value
+# TODO rename cistercian/numeral/utils
+# TODO have cleaner/clearer names (less comments)
