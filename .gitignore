@@ -1,4 +1,7 @@
 __pycache__
 TODO
 pitest.py
-tests
+tests/.pytest_cache
+
+testCistercian.py
+numeralTests.py

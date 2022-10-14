@@ -16,3 +16,9 @@ revised input_dict keys (content_main) and key checks (main)
 -------------------------------------------------------------
 
 housekeeping comprehensions and general (comments and formatting)
+
+-------------------------------------------------------------
+
+created tests folder
+
+created first basic tests using pytest
