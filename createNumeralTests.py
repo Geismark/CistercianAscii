@@ -13,23 +13,25 @@ def gen_numeral_test_json(n):
 		cist_json = json.dumps(cist_hold)
 		f.write(cist_json)
 		f.close()
-		# TODO separate lines per numeral in json file
 
-def read_numeral_test_json(n):
-	with open(f_name, "r", encoding='utf-8') as f:
-		content = json.load(f)
+	# FUTUREDO separate lines per numeral in json file
+	# FUTUREDO have single write?
+	# TODO create single setup_test in source, move this to tests folder
 
-		for i in range(0, n+1):
-			cist_numeral = CistercianNumeral(str(i)).cistercian
-			if not content[i] == cist_numeral:
-				print(f"{i=}: {content[i] == cist_numeral}")
+# here as a reference, to be removed later:
+# def read_numeral_test_json(n):
+# 	with open(f_name, "r", encoding='utf-8') as f:
+# 		content = json.load(f)
+
+# 		for i in range(0, n+1):
+# 			cist_numeral = CistercianNumeral(str(i)).cistercian
+# 			if not content[i] == cist_numeral:
+# 				print(f"{i=}: {content[i] == cist_numeral}")
 			
-	# result2 = [codecs.decode(x, 'utf-8') for x in result]
-	# print(f"{isinstance(result, str)}")
+
 
 	
 
 if __name__ == "__main__":
 	n = 9999
 	gen_numeral_test_json(n)
-	read_numeral_test_json(n)

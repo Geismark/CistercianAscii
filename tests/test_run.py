@@ -1,42 +1,40 @@
-# https://docs.pytest.org/en/stable/getting-started.html#our-first-test-run
+# TO RUN:
+# ...\Cistercian> python -m unittest tests/test_run.py
 
+import unittest, json
+from cistercian import Cistercian, CistercianNumeral
+from lib.genNumeral import gen_ascii, get_digits, get_sections, replace_chars
+from lib.cistercianUtils import validate_numeral_input, gen_random_number, separate_values
+from lib.printAscii import gen_print_ascii, gen_print_arabic
+# TODO create tests for all functions(?)
 
-# TO RUN TESTS:
-# ..\CistercianAscii> python -m pytest          <----- default
-# ..\CistercianAscii> python -m pytest -q    <------ quiet (brief output) mode
-# ..\CistercianAscii> python -m pytest tests    <------- use if issues using the previous two commands
-# for (some) answers: https://stackoverflow.com/a/35896910
+class TestCistercianNumerals(unittest.TestCase):
+	def setUp(self):
+		print('\n') # in order to not cause issues with print tests displaying in terminal
+		with open("tests/numeralTests.json", "r", encoding="utf-8") as f:
+			self.numeral_json = json.load(f)
 
-from ..cistercian import CistercianNumeral
-
-
-class TestCist:
-
-	cist_val = "1"
-
-	cist = CistercianNumeral(cist_val)
+	def test_9999_numerals (self):
+		for i in range(0, 10000):
+			cist = CistercianNumeral(str(i))
+			self.assertEqual(cist.arabic, str(i))
+			self.assertEqual(cist.cistercian, self.numeral_json[i])
 	
-	def test_arabic(self):
-		assert self.cist.arabic == self.cist_val
+	def test_test_numerals (self):
+		test_numerals = Cistercian.numeral_test()
+		order = [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999, 0000]
+		for i in range(0, 10):
+			self.assertEqual(test_numerals[i].cistercian, self.numeral_json[order[i]])
+			self.assertEqual(int(test_numerals[i].arabic), order[i])
+			# FIXME 0000 (str) rather than 0000 -> 0 (int)
+
+class TestStringMethods(unittest.TestCase):
+
+	def setUp(self):
+		self.cist = CistercianNumeral("1")
+
 	
-	def test_cistercian(self):
-		print(f"------------\n{self.cist.cistercian}\n------------")
-		assert 1 == 1
 
-
-def test_print():
-	print("-------------T1")
-
-# def main(n):
-# 	for i in range(0, n+1):
-# 		cist = CistercianNumeral(str(i))
-# 		print(f"{cist=}")
-# 		# with open("numeralTests.py", "a") as f:	
-# 		# 	return
-
-# def test(): print("-------------T")
-
-# def func(x):
-# 	return x+1
-# def test_answer():
-# 	assert func(3) == 4
+if __name__ == '__main__':
+	unittest.main()
+	print("---------------SUCCESS")
