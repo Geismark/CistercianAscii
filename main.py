@@ -17,13 +17,11 @@ def main() -> None:
 			repeat, delay_print = input_other(delay_print, inp)
 			# TODO print help rather than raise errors on erroneous input
 	print("\n-------- EXIT --------\n")
-		
+
 
 
 if __name__ == "__main__":
 	main()
 
 
-# TODO unit tests
-# TODO fix names, ascii/cistercian/glyph, etc.
-# FUTUREDO on exit: print arabic if print delay before exit
+# FUTUREDO fix names, ascii/cistercian/glyph, etc.

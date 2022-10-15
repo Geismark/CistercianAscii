@@ -3,7 +3,7 @@ import logging
 
 
 # all input tuples used later in input_dict
-exit_inputs = ("e", "exit", "c", "cancel") # used in delay_arabic_print without "" (which would show arabic rather than exiting)
+exit_inputs = ("e", "exit", "c", "cancel") # used in delay_arabic_print without "" to show arabic rather than exiting
 empty_inputs = ("")
 help_inputs = ("h", "help")
 test_inputs = ("t", "test")
@@ -11,18 +11,16 @@ random_inputs = ("r", "rand", "random")
 print_inputs = ("p", "print")
 
 
-
-
-def delay_arabic_print(delay_print) -> bool: # returns whether to continue while loop
+def delay_arabic_print(delay_print) -> bool: # bool: continue input while loop?
 	if delay_print:
 		i = input("Enter any input to see arabic numerals ")
-		if i in exit_inputs: # causes blank to show arabic rather than exit
+		if i in exit_inputs:
 			return False
 	return True
 
 
 def input_exit(delay_print) -> tuple[bool, bool]:
-	logging.debug("input_exit")
+	logging.debug("direct input exit")
 	return False, delay_print
 
 def input_help(delay_print) -> tuple[bool, bool]:
@@ -31,17 +29,15 @@ def input_help(delay_print) -> tuple[bool, bool]:
 
 def input_test(delay_print) -> tuple[bool, bool]:
 	numerals = Cistercian.numeral_test(print_arabic=False)
-	if not delay_arabic_print(delay_print):
-		return False, delay_print
+	output_continue = delay_arabic_print(delay_print)
 	Cistercian.print_arabic(numerals)
-	return True, delay_print
+	return output_continue, delay_print
 
 def input_random(delay_print) -> tuple[bool, bool]:
 	numerals = Cistercian.get_random_numerals(print=True, print_arabic=False)
-	if not delay_arabic_print(delay_print):
-		return False, delay_print
+	output_continue = delay_arabic_print(delay_print)
 	Cistercian.print_arabic(numerals)
-	return True, delay_print
+	return output_continue, delay_print
 	
 def input_delay(delay_print) -> tuple[bool, bool]:
 	delay_print = not delay_print
@@ -52,10 +48,9 @@ def input_delay(delay_print) -> tuple[bool, bool]:
 def input_other(delay_print, inp) -> tuple[bool, bool]:
 	numerals = Cistercian.get_numerals(inp)
 	Cistercian.print_numerals(numerals, print_arabic=False)
-	if not delay_arabic_print(delay_print):
-		return False, delay_print
+	output_continue = delay_arabic_print(delay_print)
 	Cistercian.print_arabic(numerals)
-	return True, delay_print
+	return output_continue, delay_print
 
 
 # input_dict must come after functions are defined
