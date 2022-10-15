@@ -10,10 +10,28 @@ test_inputs = ("t", "test")
 random_inputs = ("r", "rand", "random")
 print_inputs = ("p", "print")
 
+help_print_text = "Input 'h' for help, 'e' to exit, 't' for test, 'r' for a random input, or 'p' to delay arabic print."
+
+
+def validate_input_other(inp: str) -> bool: # return: valid input?
+	if not isinstance(inp, str):
+		raise TypeError ("Cistercian input is not a string string.")
+	
+	try:
+		int(inp)
+	except ValueError:
+		print("Cistercian input must be an integer.")
+		return False
+	
+	if abs(int(inp)) != int(inp):
+		print("Cistercian input cannot be negative.")
+		return False
+
+	return True
 
 def delay_arabic_print(delay_print) -> bool: # bool: continue input while loop?
 	if delay_print:
-		i = input("Enter any input to see arabic numerals ")
+		i = input("Press enter to show arabic numerals: ")
 		if i in exit_inputs:
 			return False
 	return True
@@ -24,7 +42,7 @@ def input_exit(delay_print) -> tuple[bool, bool]:
 	return False, delay_print
 
 def input_help(delay_print) -> tuple[bool, bool]:
-	print("Input 'h' for help, 'e' to exit, 't' for test, 'r' for a random input, or 'p' to delay arabic print (e.g.: 'p123')")
+	print(help_print_text)
 	return True, delay_print
 
 def input_test(delay_print) -> tuple[bool, bool]:
@@ -46,6 +64,8 @@ def input_delay(delay_print) -> tuple[bool, bool]:
 	return True, delay_print
 
 def input_other(delay_print, inp) -> tuple[bool, bool]:
+	if not validate_input_other(inp):
+		return True, delay_print
 	numerals = Cistercian.get_numerals(inp)
 	Cistercian.print_numerals(numerals, print_arabic=False)
 	output_continue = delay_arabic_print(delay_print)

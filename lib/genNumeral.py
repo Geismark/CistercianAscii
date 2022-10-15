@@ -1,7 +1,6 @@
 from lib.numerals import h, d, numbers, stem, middle_row
 import logging
 
-# TODO rename 'glyph' to numeral
 
 def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral in list[list[row]] format
 	values = get_digits(num)
