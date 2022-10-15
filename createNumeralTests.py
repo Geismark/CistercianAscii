@@ -1,7 +1,7 @@
 from cistercian import CistercianNumeral
 import json
 
-f_name = "numeralTests.json"
+f_name = "tests/numeralTests.json"
 
 def gen_numeral_test_json(n):
 	with open(f_name, "w", encoding='utf-8') as file_erase:
@@ -16,7 +16,8 @@ def gen_numeral_test_json(n):
 
 	# FUTUREDO separate lines per numeral in json file
 	# FUTUREDO have single write?
-	# TODO create single setup_test in source, move this to tests folder
+	# TODO create single setup_test in source (maybe?)
+	# TODO move this to tests folder (having issues with file not being found using -m)
 
 # here as a reference, to be removed later:
 # def read_numeral_test_json(n):

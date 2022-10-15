@@ -12,10 +12,10 @@ def gen_print_ascii(numeral_list: list, print_arabic: bool) -> None:
 		print(hold)
 	if print_arabic:
 		gen_print_arabic(numeral_list)
-		
+
 
 def gen_print_arabic(numeral_list: list) -> None:
 	values = [cistercian.arabic for cistercian in numeral_list]
-	extend = "".join([" " for _ in range(4 - int(len(str(values[0]))))])
+	extend = "".join([" " for _ in range(4 - int(len(str(values[0]))))]) # adds spaces to first printed value (if not len 4) to ensure all line up properly
 	values[0] = extend + str(values[0])
 	print(*values, sep="          ")

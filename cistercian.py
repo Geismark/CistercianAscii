@@ -25,8 +25,8 @@ class Cistercian:
 		return numerals # appears redundant, but makes other code cleaner
 
 	@staticmethod
-	def print_arabic(numerals: list) -> None: # actual print function is kept separate for DRY
-		gen_print_arabic(numerals)
+	def print_arabic(numerals: list) -> None:
+		gen_print_arabic(numerals) # actual print function is kept separate for DRY
 	
 	@classmethod
 	def print_arabic_to_cistercian(cls, input_value, print_arabic=True, separate=False) -> list: # ease of use, combines get and print, maybe a bit redundant but 
@@ -65,5 +65,5 @@ if __name__ == "__main__":
 
 
 # TODO read cistercian numeral strings and output value
-# TODO rename cistercian/numeral/utils
+# TODO rename cistercian(numeral/utils)
 # TODO have cleaner/clearer names (less comments)
