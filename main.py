@@ -24,4 +24,4 @@ if __name__ == "__main__":
 	main()
 
 
-# FUTUREDO fix names, ascii/cistercian/glyph, etc.
+# FUTUREDO fix names, ascii/cistercian, etc.
