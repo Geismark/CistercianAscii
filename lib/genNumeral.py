@@ -2,7 +2,7 @@ from lib.numerals import h, d, numbers, stem, middle_row
 import logging
 
 
-def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral in list[list[row]] format
+def gen_ascii(num: str) -> list[list]: # takes len 1-4 string int and returns numeral in list[list[row]] format
 	values = get_digits(num)
 	numeral_top = []
 	numeral_bottom = []
@@ -31,7 +31,7 @@ def get_digits(num: str) -> list[int]: # takes string int and returns int digits
 	return list(reversed(digits))
 
 
-def getSections(values): # takes int for each section of numeral and gets appropriate strings
+def getSections(values) -> tuple[list, list, list, list]: # takes int for each section of numeral and gets appropriate strings
 	ones = numbers[values[3]]
 
 	tens = []
@@ -51,7 +51,7 @@ def getSections(values): # takes int for each section of numeral and gets approp
 
 
 
-def replaceChars(section, replace_dict): # takes strings for each section and ensures they are flipped appropriately per section
+def replaceChars(section: list, replace_dict: dict) -> list: # takes strings for each section and ensures they are flipped appropriately per section
 	out = []
 	for r in section:
 		row = "".join(r)

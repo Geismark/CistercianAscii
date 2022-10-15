@@ -23,7 +23,7 @@ def validate_numeral_input(number: str, multiple=False) -> str:
 	return number
 
 
-def gen_random_number(single=False, max_digits = 40): # wanted a random number with more focus on randomness of number of digits
+def gen_random_number(single=False, max_digits: int = 40) -> str: # wanted a random number with more focus on randomness of number of digits
 
 	if single and max_digits > 4: max_digits = 4
 	digit_quantity = randrange(1, max_digits + 1)
