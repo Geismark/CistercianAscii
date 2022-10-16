@@ -5,7 +5,7 @@
 import unittest, json
 from cistercian import Cistercian, CistercianNumeral
 from lib.genNumeral import gen_ascii, get_digits, get_sections, replace_chars
-from lib.cistercianUtils import validate_numeral_input, gen_random_number, separate_values, test_val
+from lib.cistercianUtils import validate_numeral_input, gen_random_number, separate_values, display_all_val
 from lib.printAscii import gen_print_ascii, gen_print_arabic
 # TODO create tests for all functions(?)
 # TODO main user inputs
@@ -28,13 +28,13 @@ class TestCistercianNumerals(unittest.TestCase):
 			self.assertEqual(cist.arabic, str(i))
 	
 	def test_test_numerals(self): # cistercian
-		test_numerals = Cistercian.numeral_test(print=function_print)
+		test_numerals = Cistercian.numeral_display_all(print=function_print)
 		order = [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999, 0000]
 		for i in range(0, 10):
 			self.assertEqual(test_numerals[i].cistercian, self.numeral_json[order[i]])
 			self.assertEqual(int(test_numerals[i].arabic), order[i])
 			# FIXME 0000 (str) rather than 0000 -> 0 (int)
-		test_numerals_manual = Cistercian.get_numerals(test_val)
+		test_numerals_manual = Cistercian.get_numerals(display_all_val)
 		self.assertEqual(len(test_numerals), len(test_numerals_manual))
 		for n in range(0, len(test_numerals)):
 			self.assertEqual(test_numerals[n].cistercian, test_numerals_manual[n].cistercian)
