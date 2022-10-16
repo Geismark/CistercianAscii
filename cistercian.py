@@ -58,8 +58,13 @@ class CistercianNumeral:
 
 # FUTUREDO have Cistercian and CistercianNumeral take both int and str inputs, validate convert to str
 # FUTUREDO look at whether CistercianNumeral should be a dataclass?
+	# FUTUREDO make numerals immutable(?)
 # https://stackoverflow.com/questions/62723766/how-to-get-type-hints-for-an-objects-attributes
 # FUTUREDO DOCSTRINGS
+# FUTUREDO add test for cistercian and numeral (print ascii, get input, in/correct (show/try again))
+# FUTUREDO check main functionality as __main__
+# FUTUREDO finish unittests
+	# FUTUREDO unittests with different characters in sections
 
 if __name__ == "__main__":
 	Cistercian.get_random_numerals(print=True)
