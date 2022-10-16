@@ -19,3 +19,5 @@ def gen_print_arabic(numeral_list: list) -> None:
 	extend = "".join([" " for _ in range(4 - int(len(str(values[0]))))])
 	values[0] = extend + str(values[0])
 	print(*values, sep="          ")
+
+# FUTUREDO return printed text as strings?

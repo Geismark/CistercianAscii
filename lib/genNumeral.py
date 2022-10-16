@@ -1,29 +1,28 @@
 from lib.numerals import h, d, numbers, stem, middle_row
 import logging
 
-# TODO rename 'glyph' to numeral
 
-def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral in list[list[row]] format
+def gen_ascii(num: str) -> list[list]: # takes len 1-4 string int and returns numeral in list[list[row]] format
 	values = get_digits(num)
-	glyph_top = []
-	glyph_bottom = []
+	numeral_top = []
+	numeral_bottom = []
 	ones, tens, hundreds, thousands = getSections(values)
 
 	# top half
 	for r in range(4):
 		tens_list = [symbol for symbol in tens[r]]
 		ones_list = [symbol for symbol in ones[r]]
-		hold = tens_list + [stem[r]] + ones_list
-		glyph_top.append("".join(hold))
+		top_hold = tens_list + [stem[r]] + ones_list
+		numeral_top.append("".join(top_hold))
 
 	# bottom half (reversed to have rows go bottom-up)
 	for r in reversed(range(4)):
 		thousands_list = [symbol for symbol in thousands[r]]
 		hundreds_list = [symbol for symbol in hundreds[r]]
-		hold = thousands_list + [stem[-(r+1)]] + hundreds_list
-		glyph_bottom.append("".join(hold))
+		bottom_hold = thousands_list + [stem[-(r+1)]] + hundreds_list
+		numeral_bottom.append("".join(bottom_hold))
 
-	return glyph_top + [middle_row] + glyph_bottom
+	return numeral_top + [middle_row] + numeral_bottom
 
 
 def get_digits(num: str) -> list[int]: # takes string int and returns int digits in list
@@ -32,7 +31,7 @@ def get_digits(num: str) -> list[int]: # takes string int and returns int digits
 	return list(reversed(digits))
 
 
-def getSections(values): # takes int for each section of numeral and gets appropriate strings
+def getSections(values) -> tuple[list, list, list, list]: # takes int for each section of numeral and gets appropriate strings
 	ones = numbers[values[3]]
 
 	tens = []
@@ -52,7 +51,7 @@ def getSections(values): # takes int for each section of numeral and gets approp
 
 
 
-def replaceChars(section, replace_dict): # takes strings for each section and ensures they are flipped appropriately per section
+def replaceChars(section: list, replace_dict: dict) -> list: # takes strings for each section and ensures they are flipped appropriately per section
 	out = []
 	for r in section:
 		row = "".join(r)

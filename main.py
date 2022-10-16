@@ -1,9 +1,12 @@
-from lib.content_main import input_dict, input_other
+from lib.content_main import input_dict, input_other, help_print_text
 
 
-def main() -> None:
+def main(first=True) -> None:
 	repeat = True
 	delay_print = False
+	
+	if first:
+		print(f"\n{help_print_text}")
 
 	while repeat:
 		inp = input("Input a number: ")
@@ -15,15 +18,12 @@ def main() -> None:
 				break
 		if other:
 			repeat, delay_print = input_other(delay_print, inp)
-			# TODO print help rather than raise errors on erroneous input
 	print("\n-------- EXIT --------\n")
-		
+
 
 
 if __name__ == "__main__":
 	main()
 
 
-# TODO unit tests
-# TODO fix names, ascii/cistercian/glyph, etc.
-# FUTUREDO on exit: print arabic if print delay before exit
+# FUTUREDO fix names, ascii/cistercian, etc.
