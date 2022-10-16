@@ -27,7 +27,7 @@ class TestCistercianNumerals(unittest.TestCase):
 			self.assertEqual(cist.cistercian, self.numeral_json[i])
 			self.assertEqual(cist.arabic, str(i))
 	
-	def test_test_numerals(self): # cistercian
+	def test_display_all(self): # cistercian
 		test_numerals = Cistercian.numeral_display_all(print=function_print)
 		order = [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999, 0000]
 		for i in range(0, 10):

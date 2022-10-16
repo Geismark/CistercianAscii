@@ -6,7 +6,7 @@ import logging
 exit_inputs = ("e", "exit", "c", "cancel") # used in delay_arabic_print without "" (which would show arabic rather than exiting)
 empty_inputs = ("")
 help_inputs = ("h", "help")
-display_all_inputs = ("t", "test", "d", "display", "a", "all")
+display_all_inputs = ("t", "test", "d", "display", "a", "all") # FIXME change help input text (exit-arabic branch) to rename 'test'
 random_inputs = ("r", "rand", "random")
 print_inputs = ("p", "print")
 
