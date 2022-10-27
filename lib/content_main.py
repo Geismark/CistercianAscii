@@ -6,7 +6,7 @@ import logging
 exit_inputs = ("e", "exit", "c", "cancel") # used in delay_arabic_print without "" (which would show arabic rather than exiting)
 empty_inputs = ("")
 help_inputs = ("h", "help")
-display_all_inputs = ("t", "test", "d", "display", "a", "all") # FIXME change help input text (exit-arabic branch) to rename 'test'
+test_inputs = ("t", "test")
 random_inputs = ("r", "rand", "random")
 print_inputs = ("p", "print")
 
@@ -29,8 +29,8 @@ def input_help(delay_print) -> tuple[bool, bool]:
 	print("Input 'h' for help, 'e' to exit, 't' for test, 'r' for a random input, or 'p' to delay arabic print (e.g.: 'p123')")
 	return True, delay_print
 
-def input_display_all(delay_print) -> tuple[bool, bool]:
-	numerals = Cistercian.numeral_display_all(print_arabic=False)
+def input_test(delay_print) -> tuple[bool, bool]:
+	numerals = Cistercian.numeral_test(print_arabic=False)
 	if not delay_arabic_print(delay_print):
 		return False, delay_print
 	Cistercian.print_arabic(numerals)
@@ -63,7 +63,7 @@ input_dict = {
 	empty_inputs:input_exit,
 	exit_inputs:input_exit,
 	help_inputs:input_help,
-	display_all_inputs:input_display_all,
+	test_inputs:input_test,
 	random_inputs:input_random,
 	print_inputs:input_delay,
 }

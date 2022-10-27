@@ -1,3 +1,4 @@
 __pycache__
-tests/.pytest_cache
-changelog.txt
+TODO
+pitest.py
+tests
