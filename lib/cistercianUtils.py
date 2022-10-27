@@ -1,7 +1,7 @@
 from random import randrange
 
 
-test_val = "1111222233334444555566667777888899990000"
+display_all_val = "1111222233334444555566667777888899990000"
 
 
 def validate_numeral_input(number: str, multiple=False) -> str:

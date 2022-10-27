@@ -1,4 +1,4 @@
-from lib.cistercianUtils import validate_numeral_input, separate_values, test_val, gen_random_number
+from lib.cistercianUtils import validate_numeral_input, separate_values, display_all_val, gen_random_number
 from lib.genNumeral import gen_ascii
 from lib.printAscii import gen_print_ascii, gen_print_arabic
 
@@ -25,16 +25,16 @@ class Cistercian:
 		return numerals # appears redundant, but makes other code cleaner
 
 	@staticmethod
-	def print_arabic(numerals: list) -> None: # actual print function is kept separate for DRY
-		gen_print_arabic(numerals)
+	def print_arabic(numerals: list) -> None:
+		gen_print_arabic(numerals) # actual print function is kept separate for DRY
 	
 	@classmethod
 	def print_arabic_to_cistercian(cls, input_value, print_arabic=True, separate=False) -> list: # ease of use, combines get and print, maybe a bit redundant but 
 		return cls.print_numerals(cls.get_numerals(input_value), print_arabic=print_arabic, separate=separate)
 	
 	@classmethod
-	def numeral_test(cls, print=True, print_arabic=True, separate=False) -> list:
-		numerals = cls.get_numerals(test_val)
+	def numeral_display_all(cls, print=True, print_arabic=True, separate=False) -> list: # FIXME need a better method name
+		numerals = cls.get_numerals(display_all_val)
 		if print:
 			cls.print_numerals(numerals, print_arabic=print_arabic, separate=separate)
 		return numerals
@@ -61,4 +61,9 @@ class CistercianNumeral:
 
 if __name__ == "__main__":
 	Cistercian.get_random_numerals(print=True)
-		
+
+
+
+# TODO read cistercian numeral strings and output value
+# TODO rename cistercian(numeral/utils)
+# TODO have cleaner/clearer names (less comments)

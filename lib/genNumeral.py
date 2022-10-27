@@ -3,11 +3,11 @@ import logging
 
 # TODO rename 'glyph' to numeral
 
-def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral in list[list[row]] format
+def gen_ascii(num: str) -> list:
 	values = get_digits(num)
 	glyph_top = []
 	glyph_bottom = []
-	ones, tens, hundreds, thousands = getSections(values)
+	ones, tens, hundreds, thousands = get_sections(values)
 
 	# top half
 	for r in range(4):
@@ -26,33 +26,34 @@ def gen_ascii(num: str) -> list: # takes len 1-4 string int and returns numeral 
 	return glyph_top + [middle_row] + glyph_bottom
 
 
-def get_digits(num: str) -> list[int]: # takes string int and returns int digits in list
+def get_digits(num: str) -> list[int]:
+	if len(num) > 4: raise ValueError
 	digits = [int(x) for x in list(str(num))[::-1]]
 	digits.extend([0 for _ in range(0, 4 - min(4, len(str(num))))]) # inserts placeholder 0s for numeral gen
 	return list(reversed(digits))
 
 
-def getSections(values): # takes int for each section of numeral and gets appropriate strings
+def get_sections(values): # takes int for each section of numeral and gets appropriate strings
 	ones = numbers[values[3]]
 
 	tens = []
 	for row in numbers[values[2]]:
 		tens.append(list(reversed(row)))
-	tens = replaceChars(tens, {d[0]:d[1]})
+	tens = replace_chars(tens, {d[0]:d[1]})
 
 	hundreds = numbers[values[1]]
-	hundreds = replaceChars(hundreds, {h[0]:h[1], d[0]:d[1]})
+	hundreds = replace_chars(hundreds, {h[0]:h[1], d[0]:d[1]})
 
 	thousands = []
 	for row in numbers[values[0]]:
 		thousands.append(list(reversed(row)))
-	thousands = replaceChars(thousands, {h[0]:h[1]})
+	thousands = replace_chars(thousands, {h[0]:h[1]})
 
 	return ones, tens, hundreds, thousands
 
 
 
-def replaceChars(section, replace_dict): # takes strings for each section and ensures they are flipped appropriately per section
+def replace_chars(section, replace_dict): # takes strings for each section and ensures they are flipped appropriately per section
 	out = []
 	for r in section:
 		row = "".join(r)

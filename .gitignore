@@ -1,4 +1,3 @@
 __pycache__
-TODO
-pitest.py
-tests
+tests/.pytest_cache
+changelog.txt
